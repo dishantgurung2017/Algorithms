@@ -1,0 +1,126 @@
+Q)Write a code to generate the Fibonacci sequence until a user-specified limit.
+Q)Write a code to determine the number of function calls required to build the Fibonacci sequence until the specified limit.
+#include <iostream>
+using namespace std;
+int check = 0;
+int F(int n){
+    check++;
+    if(n == 0)
+       return 0;
+    else if(n == 1)
+        return 1;
+    else return F(n - 1) + F(n - 2);
+}
+
+int main(){
+    int n;
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    
+    cout << F(n) << endl;
+    cout << check;
+    return 0;
+}
+
+Q)Find the largest Fibonacci number less than a given number ‘n’ assuming:
+a)A list of Fibonacci numbers is available
+b)No such list is available
+
+a)#include <stdio.h>
+#include <list>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int largestFibonacciLessThanN(vector<int>& fibList, int n) {
+    int l = 0;
+    int r = fibList.size() - 1;
+    int result = -1;
+
+    while (l <= r) {
+        int m = l + (r - l) / 2;
+
+        if (fibList[m] < n) {
+            result = fibList[m];  
+            l = m + 1;        
+        } else {
+            r = m - 1;       
+        }
+    }
+
+    return result;
+}
+
+
+
+int main(){
+   vector<int> fibList = {0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946};
+
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+
+    int result = largestFibonacciLessThanN(fibList, n);
+    if (result != -1) {
+        cout << "The largest Fibonacci number less than " << n << " is " << result << endl;
+    } else {
+        cout << "No Fibonacci number is less than " << n << endl;
+    }
+
+    return 0;
+}
+
+
+b)#include <iostream>
+using namespace std;
+
+int main(){
+    int a = 1;
+    int b = 1;
+    int F = 0;
+    int n;
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    while(F < n){
+        F = a + b;
+        a = b;
+        b = F;
+    }
+    cout << a;
+}
+
+Q)(Greedy Strategy) Develop an algorithm to find a unique representation of a number using the Fibonacci sequence.
+#include <iostream>
+using namespace std;
+
+int large_Fib(int n){
+   int a = 1;
+    int b = 1;
+    int F = 0;
+
+    while(F < n){
+        F = a + b;
+        a = b;
+        b = F;
+    }
+    return a;
+
+}
+
+int main(){
+    
+    int n;
+    cout << "Enter an integer: ";
+    cin >> n;
+    int i;
+    cout << n << " can be represented by adding following Fibonacci numbers:\n";
+    while(n > 0){
+        i = large_Fib(n);
+        cout << i << endl;
+        n = n - i;
+    }
+
+    return 0;
+}
