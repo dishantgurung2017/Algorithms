@@ -1,4 +1,4 @@
-//Provide a recursive algorithm to enumerate all possible ways of expressing a given number N as a sum of 1s and 2s.
+//Provide a iterative algorithm to enumerate all possible ways of expressing a given number N as a sum of 1s and 2s.
 
 
 #include <iostream>
